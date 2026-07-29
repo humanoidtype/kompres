@@ -1,22 +1,25 @@
-CREATE TABLE IF NOT EXISTS dev_session (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    started_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    ended_at DATETIME DEFAULT NULL
-);
+CREATE DATABASE IF NOT EXISTS app_kompres;
+USE app_kompres;
 
 CREATE TABLE IF NOT EXISTS compress_jobs (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    filename VARCHAR(255) NOT NULL,
-    original_size BIGINT NOT NULL,
-    original_resolution VARCHAR(20) DEFAULT NULL,
-    original_fps DECIMAL(5,2) DEFAULT NULL,
-    duration DECIMAL(10,3) DEFAULT NULL,
-    compressed_size BIGINT DEFAULT NULL,
-    resolution VARCHAR(20) DEFAULT NULL,
-    fps INT DEFAULT NULL,
-    preset VARCHAR(20) NOT NULL DEFAULT 'pending',
-    status ENUM('pending', 'processing', 'done', 'error') NOT NULL DEFAULT 'pending',
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    filename VARCHAR(255),
+    original_size BIGINT,
+    original_resolution VARCHAR(20),
+    original_fps FLOAT,
+    duration FLOAT,
+    compressed_size BIGINT,
+    resolution VARCHAR(20),
+    fps INT,
+    preset VARCHAR(20),
+    status ENUM('pending','processing','done','error') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS dev_session (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ended_at TIMESTAMP NULL
 );
 
 INSERT INTO dev_session (started_at) VALUES (NOW());
