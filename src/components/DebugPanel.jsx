@@ -34,11 +34,11 @@ export default function DebugPanel() {
     const origErr = console.error
     console.log = (...args) => {
       setLogs(p => [...p.slice(-99), args.join(" ")])
-      origLog(...args)
+      //origLog(...args)
     }
     console.error = (...args) => {
       setLogs(p => [...p.slice(-99), "[ERROR] " + args.join(" ")])
-      origErr(...args)
+      //origErr(...args)
     }
     return () => {
       console.log = origLog
